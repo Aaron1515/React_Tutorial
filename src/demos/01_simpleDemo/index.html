@@ -4,24 +4,34 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>React - Simple Demo</title>
-    <link rel="stylesheet" type="text/css" href="../css/main.css">
-    <link rel="stylesheet" type="text/css" href="../css/default.css">
+    <link rel="stylesheet" type="text/css" href="../../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../css/default.css">
     <script src="../../js/react.min.js"></script>
     <script src="../../js/react-dom.min.js"></script>
     <script src="../../js/browser.min.js"></script>
 </head>
 <body>
 
+
+
+
+
+
 <!-- init example -->
-	<div id="example1" style="border-style: dotted; margin-bottom: 5px;"></div>
+	<div id="example1" class="each-component"></div>
 
 	<script type="text/babel">
 		ReactDOM.render(<h1>Hello World!</h1>, document.getElementById("example1"));
 	</script>
 
 
+
+
+
+
+
 <!-- component example -->
-	<div id="example2" style="border-style: dotted; margin-bottom: 5px;"></div>
+	<div id="example2" class="each-component"></div>
 
 	<script type="text/babel">
 
@@ -36,8 +46,13 @@
 	</script>
 
 
+
+
+
+
+
 <!-- parent example -->
-	<div id="example3" style="border-style: dotted; margin-bottom: 5px;"></div>
+	<div id="example3" class="each-component"></div>
 
 	<script type="text/babel">
 
@@ -62,8 +77,13 @@
 	</script>
 
 
+
+
+
+
+
 <!-- Prop example -->
-	<div id="example4" style="border-style: dotted; margin-bottom: 5px;"></div>
+	<div id="example4" class="each-component"></div>
 
 	<script type="text/babel">
 
@@ -91,20 +111,60 @@
 
 
 
+
+
+
+
+
 <!-- event handling example -->
-	<div id="example5" style="border-style: dotted; margin-bottom: 5px;"></div>
+	<div id="example5"></div>
 
 	<script type="text/babel">
 
 		var Comment = React.createClass({
-
+			edit: function(){
+				alert('Edit Comment');
+			},
+			remove: function(){
+				alert('Remove Comment');
+			},
+			render: function(){
+				return (
+					<div>
+						<h2 className="commentText">{this.props.children}</h2>
+						<button onClick={this.edit} className="button-primary">Edit</button>
+						<button onClick={this.remove} className="button-danger">Remove</button>
+					</div>
+				);
+			}
 		});
 
 		ReactDOM.render(
-			<h1>event handeling</h1>, 
+			<div className="each-component">
+				<Comment>Aaron</Comment>
+				<Comment>Ben</Comment>
+				<Comment>Gill</Comment>	
+			</div>, 
 			document.getElementById("example5"));
 
 	</script>
+
+
+
+
+
+
+
+<!-- state example -->
+	<div id="example1" class="each-component"></div>
+
+	<script type="text/babel">
+		ReactDOM.render(<h1>Hello World!</h1>, document.getElementById("example1"));
+	</script>
+
+
+
+
 
 </body>
 </html>
