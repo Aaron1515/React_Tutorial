@@ -10,7 +10,7 @@
 </head>
 <body>
 
-<!-- First example -->
+<!-- init example -->
 	<div id="example1" style="border-style: dotted; margin-bottom: 5px;"></div>
 
 	<script type="text/babel">
@@ -18,7 +18,7 @@
 	</script>
 
 
-<!-- Second example -->
+<!-- component example -->
 	<div id="example2" style="border-style: dotted; margin-bottom: 5px;"></div>
 
 	<script type="text/babel">
@@ -34,7 +34,7 @@
 	</script>
 
 
-	<!-- Second example -->
+<!-- parent example -->
 	<div id="example3" style="border-style: dotted; margin-bottom: 5px;"></div>
 
 	<script type="text/babel">
@@ -49,10 +49,55 @@
 			}
 		});
 
-		ReactDOM.render(<Bacon />, document.getElementById("example3"));
+		ReactDOM.render(
+			<div>
+				<Bacon />
+				<Bacon />
+			</div>, 
+			document.getElementById("example3")
+		);
 		
 	</script>
 
+
+<!-- Prop example -->
+	<div id="example4" style="border-style: dotted; margin-bottom: 5px;"></div>
+
+	<script type="text/babel">
+
+		var Movie = React.createClass({
+			render: function(){
+				return (
+					<div>
+						<h1>{this.props.title}</h1>
+						<p>{this.props.description}</p>
+					</div>
+				);
+			}
+		});
+
+		ReactDOM.render(
+			<div>
+				<Movie title="Cars" description="Movie about car races and fun for family"/> 
+				<Movie title="Vampire" description="Movie about vampire and not fun for family"/>
+				<Movie title="Tree" description="Movie about car growing trees and fun for family"/>
+			</div>,
+			document.getElementById("example4")
+		);
+		
+	</script>
+
+
+
+<!-- event handling example -->
+	<div id="example5" style="border-style: dotted; margin-bottom: 5px;"></div>
+
+	<script type="text/babel">
+		ReactDOM.render(
+			<h1>event handeling
+			</h1>, 
+			document.getElementById("example5"));
+	</script>
 
 </body>
 </html>
