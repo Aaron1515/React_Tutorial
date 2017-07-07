@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>React - Simple Demo</title>
+    <script src="../../js/react.min.js"></script>
+    <script src="../../js/react-dom.min.js"></script>
+    <script src="../../js/browser.min.js"></script>
+</head>
+<body>
+
+<!-- First example -->
+	<div id="example1" style="border-style: dotted; margin-bottom: 5px;"></div>
+
+	<script type="text/babel">
+		ReactDOM.render(<h1>Hello World!</h1>, document.getElementById("example1"));
+	</script>
+
+
+<!-- Second example -->
+	<div id="example2" style="border-style: dotted; margin-bottom: 5px;"></div>
+
+	<script type="text/babel">
+
+		var Bacon = React.createClass({
+			render: function(){
+				return(<h3>This is a simple component!</h3>);
+			}
+		});
+
+		ReactDOM.render(<Bacon />, document.getElementById("example2"));
+		
+	</script>
+
+
+	<!-- Second example -->
+	<div id="example3" style="border-style: dotted; margin-bottom: 5px;"></div>
+
+	<script type="text/babel">
+
+		var Bacon = React.createClass({
+			render: function(){
+				return(
+					<div>
+						<h3>This is a child of the component!</h3>
+						<p>This is a child of the componet!</p>
+					</div>);
+			}
+		});
+
+		ReactDOM.render(<Bacon />, document.getElementById("example3"));
+		
+	</script>
+
+
+</body>
+</html>
