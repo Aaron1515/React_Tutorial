@@ -156,10 +156,42 @@
 
 
 <!-- state example -->
-	<div id="example1" class="each-component"></div>
+	<div id="example6" class="each-component"></div>
 
 	<script type="text/babel">
-		ReactDOM.render(<h1>Hello World!</h1>, document.getElementById("example1"));
+
+		var CheckBox = React.createClass({
+
+			<!-- Create the state of checked -->
+			getInitialState: function(){
+				return {checked: true}
+			},
+
+			<!-- this function reverse the checked state -->
+			handleChecked: function(){
+				this.setState({checked: !this.state.checked})
+			},
+
+			<!-- Render HTML -->
+			render: function(){
+				var msg;
+				if(this.state.checked){
+					msg = 'checked'
+				}else{
+					msg = 'unchecked'
+				}
+
+				return (
+					<div>
+						<input type="checkbox" defaultChecked={this.state.checked} onChange={this.handleChecked} />
+						<h2>Check box is {msg}</h2>
+					</div>
+				)
+			}
+
+		});
+
+		ReactDOM.render(<CheckBox />, document.getElementById("example6"));
 	</script>
 
 
