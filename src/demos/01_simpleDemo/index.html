@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>React - Simple Demo</title>
+    <link rel="stylesheet" type="text/css" href="../css/main.css">
+    <link rel="stylesheet" type="text/css" href="../css/default.css">
     <script src="../../js/react.min.js"></script>
     <script src="../../js/react-dom.min.js"></script>
     <script src="../../js/browser.min.js"></script>
@@ -93,10 +95,15 @@
 	<div id="example5" style="border-style: dotted; margin-bottom: 5px;"></div>
 
 	<script type="text/babel">
+
+		var Comment = React.createClass({
+
+		});
+
 		ReactDOM.render(
-			<h1>event handeling
-			</h1>, 
+			<h1>event handeling</h1>, 
 			document.getElementById("example5"));
+
 	</script>
 
 </body>
