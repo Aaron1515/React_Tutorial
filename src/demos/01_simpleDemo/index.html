@@ -42,7 +42,7 @@
 		});
 
 		ReactDOM.render(<Bacon />, document.getElementById("example2"));
-		
+
 	</script>
 
 
@@ -70,10 +70,10 @@
 			<div>
 				<Bacon />
 				<Bacon />
-			</div>, 
+			</div>,
 			document.getElementById("example3")
 		);
-		
+
 	</script>
 
 
@@ -100,13 +100,13 @@
 
 		ReactDOM.render(
 			<div>
-				<Movie title="Cars" description="Movie about car races and fun for family"/> 
+				<Movie title="Cars" description="Movie about car races and fun for family"/>
 				<Movie title="Vampire" description="Movie about vampire and not fun for family"/>
 				<Movie title="Tree" description="Movie about car growing trees and fun for family"/>
 			</div>,
 			document.getElementById("example4")
 		);
-		
+
 	</script>
 
 
@@ -143,8 +143,8 @@
 			<div className="each-component">
 				<Comment>Aaron</Comment>
 				<Comment>Ben</Comment>
-				<Comment>Gill</Comment>	
-			</div>, 
+				<Comment>Gill</Comment>
+			</div>,
 			document.getElementById("example5"));
 
 	</script>
@@ -155,7 +155,7 @@
 
 
 
-<!-- state example -->
+<!-- state on check box example -->
 	<div id="example6" class="each-component"></div>
 
 	<script type="text/babel">
@@ -199,8 +199,82 @@
 
 
 
-<!-- add state and ref example -->
+<!-- adding state example -->
 	<div id="example7"></div>
+
+	<script type="text/babel">
+
+		var Comment = React.createClass({
+			getInitialState: function(){
+				return {editing: false}
+			},
+			edit: function(){
+				this.setState({editing: true});
+			},
+			remove: function(){
+				alert('Remove Comment');
+			},
+			save: function(){
+				//Get value from text area when editing
+				var val = this.refs.newText.value;
+				console.log('New comment: ' + val);
+				this.setState({editing: false});
+			},
+			renderNormal:function(){
+				return (
+					<div className="commentText">
+						<h1>Example 7</h1>
+						<h2>{this.props.children}</h2>
+						<button onClick={this.edit} className="button-primary">Edit</button>
+						<button onClick={this.remove} className="button-danger">Remove</button>
+					</div>
+				);
+			},
+			renderForm:function(){
+				return (
+					<div className="commentText">
+						// Add ref instead of ID to get value to edit function
+						<textarea ref="newText" defaultValue={this.props.children}></textarea>
+						<br />
+						<button onClick={this.save} className="button-success">Save</button>
+					</div>
+				);
+			},
+			render: function(){
+				if(this.state.editing){
+					return this.renderForm();
+				}else{
+					return this.renderNormal();
+				};
+			}
+		});
+
+		ReactDOM.render(
+			<div className="each-component">
+				<Comment>Aaron</Comment>
+				<Comment>Ben</Comment>
+				<Comment>Gill</Comment>
+			</div>,
+			document.getElementById("example7"));
+
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!--  Multiple component in compenent example -->
+	<div id="example8"></div>
 
 	<script type="text/babel">
 
@@ -248,82 +322,36 @@
 			}
 		});
 
-		ReactDOM.render(
-			<div className="each-component">
-				<Comment>Aaron</Comment>
-				<Comment>Ben</Comment>
-				<Comment>Gill</Comment>	
-			</div>, 
-			document.getElementById("example7"));
+		var Board = React.createClass({
 
-	</script>
-
-
-
-
-
-
-
-
-
-
-
-
-	<!--  example -->
-	<div id="example8"></div>
-
-	<script type="text/babel">
-
-		var Comment = React.createClass({
 			getInitialState: function(){
-				return {editing: false}
+				return{
+					comments: [
+						'First person said hi',
+						'Second person said something',
+						'Third person said cream cheese',
+            'I can add more'
+					]
+				}
 			},
-			edit: function(){
-				this.setState({editing: true});
-			},
-			remove: function(){
-				alert('Remove Comment');
-			},
-			save: function(){
-				var val = this.refs.newText.value;
-				console.log('New comment: ' + val);
-				this.setState({editing: false});
-			},
-			renderNormal:function(){
-				return (
-					<div className="commentText">
-						<h2>{this.props.children}</h2>
-						<button onClick={this.edit} className="button-primary">Edit</button>
-						<button onClick={this.remove} className="button-danger">Remove</button>
-					</div>
-				);
-			},
-			renderForm:function(){
-				return (
-					<div className="commentText">
-						<textarea ref="newText" defaultValue={this.props.children}></textarea>
-						<br />
-						<button onClick={this.save} className="button-success">Save</button>
-					</div>
-				);
-			},
+
+			//.map is a function in JS to loop through that takes 2 parameter, first is each item, second is counter
 			render: function(){
-				if(this.state.editing){
-					return this.renderForm();
-				}else{
-					return this.renderNormal();
-				};
+				return(
+					<div className="each-component board">
+						<h2>Example 8</h2>
+						{
+							this.state.comments.map(function(text, counter){
+								return <Comment key={counter}>{text}</Comment>
+							})
+						}
+					</div>
+				)
 			}
+
 		});
 
-		ReactDOM.render(
-			<div className="each-component">
-				<Comment>Aaron</Comment>
-				<Comment>Ben</Comment>
-				<Comment>Gill</Comment>	
-			</div>, 
-			document.getElementById("example8"));
-
+		ReactDOM.render(<Board />, document.getElementById("example8"));
 	</script>
 
 </body>
