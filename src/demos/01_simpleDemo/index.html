@@ -354,5 +354,190 @@
 		ReactDOM.render(<Board />, document.getElementById("example8"));
 	</script>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!-- adding state example -->
+  	<div id="example7"></div>
+
+  	<script type="text/babel">
+
+  		var Comment = React.createClass({
+  			getInitialState: function(){
+  				return {editing: false}
+  			},
+  			edit: function(){
+  				this.setState({editing: true});
+  			},
+  			remove: function(){
+  				alert('Remove Comment');
+  			},
+  			save: function(){
+  				//Get value from text area when editing
+  				var val = this.refs.newText.value;
+  				console.log('New comment: ' + val);
+  				this.setState({editing: false});
+  			},
+  			renderNormal:function(){
+  				return (
+  					<div className="commentText">
+  						<h1>Example 7</h1>
+  						<h2>{this.props.children}</h2>
+  						<button onClick={this.edit} className="button-primary">Edit</button>
+  						<button onClick={this.remove} className="button-danger">Remove</button>
+  					</div>
+  				);
+  			},
+  			renderForm:function(){
+  				return (
+  					<div className="commentText">
+  						// Add ref instead of ID to get value to edit function
+  						<textarea ref="newText" defaultValue={this.props.children}></textarea>
+  						<br />
+  						<button onClick={this.save} className="button-success">Save</button>
+  					</div>
+  				);
+  			},
+  			render: function(){
+  				if(this.state.editing){
+  					return this.renderForm();
+  				}else{
+  					return this.renderNormal();
+  				};
+  			}
+  		});
+
+  		ReactDOM.render(
+  			<div className="each-component">
+  				<Comment>Aaron</Comment>
+  				<Comment>Ben</Comment>
+  				<Comment>Gill</Comment>
+  			</div>,
+  			document.getElementById("example7"));
+
+  	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  	<!--  Refactor example -->
+  	<div id="example9"></div>
+
+  	<script type="text/babel">
+
+  		var Comment = React.createClass({
+  			getInitialState: function(){
+  				return {editing: false}
+  			},
+  			edit: function(){
+  				this.setState({editing: true});
+  			},
+  			remove: function(){
+  				console.log('Remove Comment');
+  			},
+  			save: function(){
+  				var val = this.refs.newText.value;
+  				console.log('New comment: ' + val);
+  				this.setState({editing: false});
+  			},
+  			renderNormal:function(){
+  				return (
+  					<div className="commentText">
+  						<h2>{this.props.children}</h2>
+  						<button onClick={this.edit} className="button-primary">Edit</button>
+  						<button onClick={this.remove} className="button-danger">Remove</button>
+  					</div>
+  				);
+  			},
+  			renderForm:function(){
+  				return (
+  					<div className="commentText">
+  						<textarea ref="newText" defaultValue={this.props.children}></textarea>
+  						<br />
+  						<button onClick={this.save} className="button-success">Save</button>
+  					</div>
+  				);
+  			},
+  			render: function(){
+  				if(this.state.editing){
+  					return this.renderForm();
+  				}else{
+  					return this.renderNormal();
+  				};
+  			}
+  		});
+
+  		var Board = React.createClass({
+
+  			getInitialState: function(){
+  				return{
+  					comments: [
+  						'First person said hi',
+  						'Second person said something',
+  						'Third person said cream cheese',
+              'I can add more'
+  					]
+  				}
+  			},
+
+        removeComment: function(counter){
+          console.log('Removing counter number: ' + counter);
+          var commentArray = this.state.comments;
+          arr.splice(i, 1);
+          this.setState({comments: commentArray});
+        },
+
+        updateComment: function(newComment, counter){
+          console.log('Updating counter number: ' + counter);
+          var commentArray = this.state.comments;
+          commentArray[counter] = newComment;
+          this.setState({comments: commentArray});
+
+        },
+
+        eachComment: function(text, counter){
+          return (
+            <Comment key={counter} index={counter}>
+              {text}
+            </Comment>
+          )
+        },
+
+  			render: function(){
+  				return(
+  					<div className="each-component board">
+  						<h2>Example 9</h2>
+  						{this.state.comments.map(this.eachComment)}
+  					</div>
+  				)
+  			}
+
+  		});
+
+  		ReactDOM.render(<Board />, document.getElementById("example9"));
+  	</script>
+
+
 </body>
 </html>
